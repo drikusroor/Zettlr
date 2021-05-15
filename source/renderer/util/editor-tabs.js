@@ -38,6 +38,12 @@ module.exports = class EditorTabs {
     this._div.onclick = (event) => { this._onClick(event) }
     // Listen for non-primary clicks (= closing)
     this._div.onauxclick = (event) => { this._onClick(event) }
+    // Prevent default middle mouse button click scroll behavior
+    this._div.addEventListener('mousedown', (event) => {
+      if (event.button === 1) {
+        event.preventDefault()
+      }
+    })
 
     this._div.addEventListener('contextmenu', (event) => { this._onContext(event) })
 
